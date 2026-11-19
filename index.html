@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hành trình văn hóa Việt Nam song ngữ Việt – Anh: bản đồ di sản, ba miền Bắc – Trung – Nam, ẩm thực, lễ hội, 12 con giáp và cẩm nang du lịch. A bilingual journey through Vietnamese culture."
+    />
+    <meta name="theme-color" content="#7E1014" />
+    <title>Việt Nam – Hành trình văn hóa</title>
+
+    <!-- Áp dụng ngôn ngữ & giao diện đã lưu trước khi hiển thị (tránh nháy màn hình) -->
+    <script>
+      (function () {
+        var d = document.documentElement, lang = "vi", theme = null;
+        try { lang = localStorage.getItem("vn.lang") || (navigator.language || "vi").slice(0, 2); theme = localStorage.getItem("vn.theme"); } catch (e) {}
+        d.lang = lang === "en" ? "en" : "vi";
+        if (!theme) theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        d.setAttribute("data-theme", theme);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-vi="Bỏ qua, tới nội dung chính" data-en="Skip to main content">Bỏ qua, tới nội dung chính</a>
+
+    <!-- Biểu tượng SVG dùng chung (trống đồng được vẽ bằng script.js) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="lotus" viewBox="0 0 64 64">
+          <path d="M32 6c7 8 9 18 0 33-9-15-7-25 0-33z" />
+          <path d="M30 40C24 27 15 20 4 21c2 12 12 20 26 19z" opacity=".85" />
+          <path d="M34 40c6-13 15-20 26-19-2 12-12 20-26 19z" opacity=".85" />
+          <path d="M32 44c-9 1-19-2-27-8 4 9 14 14 27 13 13 1 23-4 27-13-8 6-18 9-27 8z" opacity=".7" />
+          <path d="M14 55h36" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </symbol>
+        <symbol id="blossom" viewBox="0 0 40 40">
+          <g transform="translate(20 20)">
+            <ellipse rx="7" ry="10" cy="-9" />
+            <ellipse rx="7" ry="10" cy="-9" transform="rotate(72)" />
+            <ellipse rx="7" ry="10" cy="-9" transform="rotate(144)" />
+            <ellipse rx="7" ry="10" cy="-9" transform="rotate(216)" />
+            <ellipse rx="7" ry="10" cy="-9" transform="rotate(288)" />
+            <circle r="3.5" fill="#fff3c4" />
+          </g>
+        </symbol>
+      </defs>
+    </svg>
+
+    <!-- ===================== THANH ĐIỀU HƯỚNG ===================== -->
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#/home" aria-label="Việt Nam – Trang chủ">
+        <svg class="brand-mark" aria-hidden="true"><use href="#lotus" /></svg>
+        <span class="brand-text">
+          <b>Việt Nam</b>
+          <small data-vi="Hành trình văn hóa" data-en="A Cultural Journey">Hành trình văn hóa</small>
+        </span>
+      </a>
+
+      <nav class="mainnav" id="mainnav" aria-label="Điều hướng chính">
+        <a href="#/home" data-nav="home"><span data-vi="Trang chủ" data-en="Home">Trang chủ</span></a>
+        <a href="#/map" data-nav="map"><span data-vi="Hành trình" data-en="Journey">Hành trình</span></a>
+        <a href="#/phrases" data-nav="phrases"><span data-vi="Tiếng Việt" data-en="Phrases">Tiếng Việt</span></a>
+        <a href="#/zodiac" data-nav="zodiac"><span data-vi="Con giáp" data-en="Zodiac">Con giáp</span></a>
+        <a href="#/festivals" data-nav="festivals"><span data-vi="Lễ hội" data-en="Festivals">Lễ hội</span></a>
+        <a href="#/tips" data-nav="tips"><span data-vi="Cẩm nang" data-en="Travel tips">Cẩm nang</span></a>
+        <a href="#/quiz" data-nav="quiz"><span data-vi="Đố vui" data-en="Quiz">Đố vui</span></a>
+      </nav>
+
+      <div class="tools">
+        <div class="lang-switch" role="group" aria-label="Ngôn ngữ / Language">
+          <button type="button" data-lang="vi" lang="vi" title="Tiếng Việt">VI</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-btn" data-vi-aria="Đổi giao diện sáng / tối" data-en-aria="Toggle light / dark theme">
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="icon-btn" id="journal-btn" aria-controls="journal" aria-expanded="false" data-vi-aria="Sổ tay du lịch" data-en-aria="Travel journal">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+          <span class="count" id="journal-count" hidden>0</span>
+        </button>
+        <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-controls="mainnav" aria-expanded="false" data-vi-aria="Mở menu" data-en-aria="Open menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- ===================== TRANG CHỦ ===================== -->
+      <section class="view" data-view="home">
+        <div class="hero lacquer">
+          <div class="hero-drum-wrap" aria-hidden="true">
+            <svg class="hero-drum drum" viewBox="0 0 400 400"><use href="#drum" /></svg>
+          </div>
+          <div class="lanterns" aria-hidden="true">
+            <span style="--x: 3%; --h: 14px; --d: 0s"></span>
+            <span style="--x: 22%; --h: 26px; --d: -1.4s"></span>
+            <span style="--x: 78%; --h: 44px; --d: -2.6s"></span>
+            <span style="--x: 93%; --h: 96px; --d: -0.7s"></span>
+          </div>
+
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="eyebrow">
+                <span lang="vi">Xin chào!</span>
+                <span data-vi="Chào mừng bạn đến Việt Nam" data-en="Welcome to Vietnam">Chào mừng bạn đến Việt Nam</span>
+              </p>
+              <h1 class="hero-title">
+                <span data-vi="Khám phá" data-en="Discover the">Khám phá</span>
+                <em data-vi="hồn Việt" data-en="soul of Vietnam">hồn Việt</em>
+              </h1>
+              <p class="hero-lead"
+                data-vi="Hành trình qua ba miền Bắc – Trung – Nam: di sản nghìn năm, nghệ thuật dân gian, ẩm thực đường phố trứ danh và những nụ cười hiếu khách."
+                data-en="A journey through the North, Centre and South – thousand-year heritage, folk arts, legendary street food and the warmest smiles.">
+                Hành trình qua ba miền Bắc – Trung – Nam: di sản nghìn năm, nghệ thuật dân gian, ẩm thực đường phố trứ danh và những nụ cười hiếu khách.
+              </p>
+              <div class="hero-cta">
+                <a class="btn btn-gold" href="#/map">
+                  <span data-vi="Bắt đầu hành trình" data-en="Start the journey">Bắt đầu hành trình</span>
+                  <i class="fa-solid fa-compass" aria-hidden="true"></i>
+                </a>
+                <button type="button" class="btn btn-ghost-light" data-speak="Xin chào">
+                  <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+                  <span><span lang="vi">“Xin chào”</span> <small>/sin chow/</small></span>
+                </button>
+              </div>
+              <a class="tet-chip" href="#/festivals" id="hero-tet">
+                <span class="tet-chip-icon" aria-hidden="true">🧧</span>
+                <span class="tet-chip-text" data-tet-text></span>
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="hero-art" aria-hidden="true">
+              <figure class="arch arch-side arch-left">
+                <img src="thien-mu-pagoda.jpg" alt="" />
+                <figcaption>Huế</figcaption>
+              </figure>
+              <figure class="arch arch-main">
+                <img src="img/ho-hoan-kiem.jpg" alt="" />
+                <figcaption>Hà Nội</figcaption>
+              </figure>
+              <figure class="arch arch-side arch-right">
+                <img src="img/duc-ba.jpg" alt="" />
+                <figcaption>Sài Gòn</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </div>
+
+        <!-- Giới thiệu & con số -->
+        <section class="intro container">
+          <div class="intro-copy reveal">
+            <p class="kicker" data-vi="Dải đất hình chữ S" data-en="The S-shaped land">Dải đất hình chữ S</p>
+            <h2 class="sec-title" data-vi="Một đất nước, ba miền, muôn sắc thái" data-en="One country, three regions, endless colours">Một đất nước, ba miền, muôn sắc thái</h2>
+            <p
+              data-vi="Trải dài hơn 1.600 km từ núi rừng Tây Bắc đến mũi Cà Mau, Việt Nam là nơi giao hòa giữa văn minh lúa nước, di sản cung đình và nhịp sống sôi động hiện đại. Mỗi miền mang một giọng nói, một hương vị và một câu chuyện riêng."
+              data-en="Stretching more than 1,600 km from the misty north-west mountains to the tip of Cà Mau, Vietnam weaves together wet-rice civilisation, imperial heritage and a buzzing modern pulse. Each region has its own accent, its own flavours and its own stories.">
+              Trải dài hơn 1.600 km từ núi rừng Tây Bắc đến mũi Cà Mau, Việt Nam là nơi giao hòa giữa văn minh lúa nước, di sản cung đình và nhịp sống sôi động hiện đại. Mỗi miền mang một giọng nói, một hương vị và một câu chuyện riêng.
+            </p>
+          </div>
+          <dl class="stats reveal">
+            <div class="stat"><dt data-count="54">54</dt><dd data-vi="dân tộc anh em" data-en="ethnic groups">dân tộc anh em</dd></div>
+            <div class="stat"><dt data-count="3260" data-suffix=" km">3.260 km</dt><dd data-vi="đường bờ biển" data-en="of coastline">đường bờ biển</dd></div>
+            <div class="stat"><dt data-count="4000" data-suffix="+">4.000+</dt><dd data-vi="năm văn hiến" data-en="years of culture">năm văn hiến</dd></div>
+            <div class="stat"><dt data-count="3">3</dt><dd data-vi="miền – một hồn Việt" data-en="regions, one soul">miền – một hồn Việt</dd></div>
+          </dl>
+        </section>
+
+        <!-- Ba miền -->
+        <section class="section">
+          <div class="container">
+            <div class="sec-head reveal">
+              <p class="kicker" data-vi="Ba miền" data-en="Three regions">Ba miền</p>
+              <h2 class="sec-title" data-vi="Chọn điểm khởi hành của bạn" data-en="Choose where your journey begins">Chọn điểm khởi hành của bạn</h2>
+              <span class="orn" aria-hidden="true"></span>
+            </div>
+            <div class="region-cards" id="home-regions"></div>
+          </div>
+        </section>
+
+        <!-- Trải nghiệm -->
+        <section class="section section-alt">
+          <div class="container">
+            <div class="sec-head reveal">
+              <p class="kicker" data-vi="Trải nghiệm đặc sắc" data-en="Signature experiences">Trải nghiệm đặc sắc</p>
+              <h2 class="sec-title" data-vi="Không chỉ để xem – còn để chơi và học" data-en="Not just to read – to play and learn">Không chỉ để xem – còn để chơi và học</h2>
+              <span class="orn" aria-hidden="true"></span>
+            </div>
+            <div class="exp-grid">
+              <a class="exp-card reveal" href="#/map">
+                <span class="exp-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                <h3 data-vi="Bản đồ di sản" data-en="Heritage map">Bản đồ di sản</h3>
+                <p data-vi="Bản đồ sơn mài tương tác: chạm vào từng miền và khám phá những điểm đến nổi tiếng." data-en="An interactive lacquer map: tap each region and uncover famous destinations.">Bản đồ sơn mài tương tác: chạm vào từng miền và khám phá những điểm đến nổi tiếng.</p>
+              </a>
+              <a class="exp-card reveal" href="#/phrases">
+                <span class="exp-icon"><i class="fa-solid fa-comments"></i></span>
+                <h3 data-vi="Nói tiếng Việt" data-en="Speak Vietnamese">Nói tiếng Việt</h3>
+                <p data-vi="Nghe phát âm gần 30 câu nói hữu ích và khám phá 6 thanh điệu của tiếng Việt." data-en="Hear nearly 30 handy phrases and discover the six musical tones of Vietnamese.">Nghe phát âm gần 30 câu nói hữu ích và khám phá 6 thanh điệu của tiếng Việt.</p>
+              </a>
+              <a class="exp-card reveal" href="#/zodiac">
+                <span class="exp-icon"><i class="fa-solid fa-dragon"></i></span>
+                <h3 data-vi="12 con giáp" data-en="Vietnamese zodiac">12 con giáp</h3>
+                <p data-vi="Bạn tuổi con gì, mệnh gì? Ở Việt Nam có cả… con Mèo!" data-en="Find your animal and element – in Vietnam, there's even a Cat!">Bạn tuổi con gì, mệnh gì? Ở Việt Nam có cả… con Mèo!</p>
+              </a>
+              <a class="exp-card reveal" href="#/festivals">
+                <span class="exp-icon"><i class="fa-solid fa-moon"></i></span>
+                <h3 data-vi="Lễ hội & Tết" data-en="Festivals & Tết">Lễ hội & Tết</h3>
+                <p data-vi="Lịch lễ hội quanh năm và đồng hồ đếm ngược tới Tết Nguyên Đán." data-en="A year-round festival calendar and a live countdown to Lunar New Year.">Lịch lễ hội quanh năm và đồng hồ đếm ngược tới Tết Nguyên Đán.</p>
+              </a>
+              <a class="exp-card reveal" href="#/tips">
+                <span class="exp-icon"><i class="fa-solid fa-suitcase-rolling"></i></span>
+                <h3 data-vi="Cẩm nang du lịch" data-en="Travel tips">Cẩm nang du lịch</h3>
+                <p data-vi="Phép lịch sự nên biết, thời điểm đẹp nhất và mẹo thực tế cho chuyến đi." data-en="Etiquette to know, the best time to visit and practical tips for your trip.">Phép lịch sự nên biết, thời điểm đẹp nhất và mẹo thực tế cho chuyến đi.</p>
+              </a>
+              <a class="exp-card reveal" href="#/quiz">
+                <span class="exp-icon"><i class="fa-solid fa-award"></i></span>
+                <h3 data-vi="Đố vui & chứng nhận" data-en="Quiz & certificate">Đố vui & chứng nhận</h3>
+                <p data-vi="Trả lời 10 câu hỏi, đỗ Trạng Nguyên và nhận chứng nhận mang tên bạn." data-en="Answer 10 questions, become a Trạng Nguyên and download a certificate in your name.">Trả lời 10 câu hỏi, đỗ Trạng Nguyên và nhận chứng nhận mang tên bạn.</p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tục ngữ -->
+        <section class="proverb-band lacquer">
+          <svg class="proverb-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container proverb-inner">
+            <p class="kicker" data-vi="Tục ngữ Việt Nam" data-en="Vietnamese proverb">Tục ngữ Việt Nam</p>
+            <blockquote class="proverb" id="proverb" aria-live="polite">
+              <p class="proverb-vi" lang="vi"></p>
+              <p class="proverb-en" lang="en"></p>
+            </blockquote>
+            <div class="proverb-dots" id="proverb-dots" role="tablist"></div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===================== BẢN ĐỒ ===================== -->
+      <section class="view" data-view="map" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Bản đồ di sản" data-en="Heritage map">Bản đồ di sản</p>
+            <h1 data-vi="Ba miền – một dải đất hình chữ S" data-en="Three regions, one S-shaped land">Ba miền – một dải đất hình chữ S</h1>
+            <p class="lead" data-vi="Di chuột hoặc chạm vào điểm ghim để xem trước, bấm để bước vào từng miền. Những chấm vàng nhỏ là các điểm đến nổi tiếng khác." data-en="Hover or tap a pin to preview, click to step into each region. The small golden dots mark other famous destinations.">Di chuột hoặc chạm vào điểm ghim để xem trước, bấm để bước vào từng miền.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container map-layout">
+          <div class="map-board">
+            <div class="map-stage" id="map-stage"></div>
+            <p class="map-legend">
+              <span><i class="dot dot-pin"></i> <span data-vi="Ba trung tâm văn hóa" data-en="Three cultural capitals">Ba trung tâm văn hóa</span></span>
+              <span><i class="dot dot-gem"></i> <span data-vi="Điểm đến nổi bật" data-en="Must-see destinations">Điểm đến nổi bật</span></span>
+            </p>
+          </div>
+          <aside class="map-panel" id="map-panel" aria-live="polite"></aside>
+        </div>
+      </section>
+
+      <!-- ===================== BA MIỀN (sinh tự động từ data.js) ===================== -->
+      <section class="view region-view" data-view="north" data-region="north" hidden></section>
+      <section class="view region-view" data-view="central" data-region="central" hidden></section>
+      <section class="view region-view" data-view="south" data-region="south" hidden></section>
+
+      <!-- ===================== KẾT THÚC HÀNH TRÌNH ===================== -->
+      <section class="view" data-view="finish" hidden>
+        <div class="finish lacquer">
+          <div class="lanterns" aria-hidden="true">
+            <span style="--x: 8%; --h: 60px; --d: -.4s"></span>
+            <span style="--x: 26%; --h: 20px; --d: -1.8s"></span>
+            <span style="--x: 74%; --h: 34px; --d: -2.2s"></span>
+            <span style="--x: 92%; --h: 84px; --d: -1s"></span>
+          </div>
+          <div class="finish-card">
+            <svg class="finish-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum-lite" /></svg>
+            <p class="kicker" data-vi="Hành trình hoàn tất" data-en="Journey complete">Hành trình hoàn tất</p>
+            <h1 data-vi="Cảm ơn bạn đã đồng hành cùng Việt Nam!" data-en="Thank you for travelling with Vietnam!">Cảm ơn bạn đã đồng hành cùng Việt Nam!</h1>
+            <p class="finish-wish"
+              data-vi="Chúc chuyến đi của bạn ngập tràn kỷ niệm đẹp, những nụ cười ấm áp và nhiều khám phá văn hóa thú vị. Thượng lộ bình an!"
+              data-en="May your journey be filled with beautiful memories, warm smiles and wonderful cultural discoveries. Thượng lộ bình an – safe travels!">
+              Chúc chuyến đi của bạn ngập tràn kỷ niệm đẹp, những nụ cười ấm áp và nhiều khám phá văn hóa thú vị. Thượng lộ bình an!
+            </p>
+            <h2 class="finish-sub" data-vi="Hộ chiếu văn hóa của bạn" data-en="Your culture passport">Hộ chiếu văn hóa của bạn</h2>
+            <div class="stamps" data-stamps></div>
+            <div class="finish-actions">
+              <a class="btn btn-primary" href="#/quiz"><i class="fa-solid fa-award" aria-hidden="true"></i> <span data-vi="Làm đố vui & nhận chứng nhận" data-en="Take the quiz & get your certificate">Làm đố vui & nhận chứng nhận</span></a>
+              <a class="btn btn-outline" href="#/map"><i class="fa-solid fa-map" aria-hidden="true"></i> <span data-vi="Về bản đồ" data-en="Back to the map">Về bản đồ</span></a>
+              <a class="btn btn-outline" href="#/home"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i> <span data-vi="Về trang chủ" data-en="Start over">Về trang chủ</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== TIẾNG VIỆT ===================== -->
+      <section class="view" data-view="phrases" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Sổ tay tiếng Việt" data-en="Vietnamese phrasebook">Sổ tay tiếng Việt</p>
+            <h1 data-vi="Nói tiếng Việt như người bản xứ" data-en="Speak Vietnamese like a local">Nói tiếng Việt như người bản xứ</h1>
+            <p class="lead" data-vi="Bấm loa để nghe phát âm. Chỉ cần vài câu chào hỏi, bạn sẽ nhận lại những nụ cười thật tươi!" data-en="Tap the speaker to hear each phrase. A few words of Vietnamese will earn you the biggest smiles!">Bấm loa để nghe phát âm.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container page-body">
+          <p class="voice-warning" id="voice-warning" hidden>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <span data-vi="Thiết bị của bạn chưa có giọng đọc tiếng Việt nên phát âm có thể chưa chuẩn. Hãy thử trình duyệt Microsoft Edge hoặc Chrome trên điện thoại." data-en="Your device has no Vietnamese voice installed, so pronunciation may be off. Try Microsoft Edge, or Chrome on a phone.">Thiết bị của bạn chưa có giọng đọc tiếng Việt.</span>
+          </p>
+
+          <section class="tones-block reveal">
+            <div class="sec-head left">
+              <p class="kicker" data-vi="Linh hồn của tiếng Việt" data-en="The music of Vietnamese">Linh hồn của tiếng Việt</p>
+              <h2 class="sec-title" data-vi="6 thanh điệu – 6 nghĩa khác nhau" data-en="6 tones – 6 different meanings">6 thanh điệu – 6 nghĩa khác nhau</h2>
+              <p class="sec-desc" data-vi="Cùng một âm “ma”, chỉ cần đổi dấu là thành một từ hoàn toàn khác. Bấm vào từng ô để nghe." data-en="The same syllable “ma” becomes a totally different word with each tone mark. Tap a tile to listen.">Cùng một âm “ma”, chỉ cần đổi dấu là thành một từ hoàn toàn khác.</p>
+            </div>
+            <div class="tones" id="tones"></div>
+          </section>
+
+          <section class="phrases-block">
+            <div class="phrase-tools">
+              <div class="chips" id="phrase-cats" role="tablist"></div>
+              <label class="search">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input type="search" id="phrase-search" data-vi-ph="Tìm câu nói…" data-en-ph="Search phrases…" placeholder="Tìm câu nói…" />
+              </label>
+            </div>
+            <div class="phrase-grid" id="phrase-grid"></div>
+            <p class="empty" id="phrase-empty" hidden data-vi="Không tìm thấy câu nào phù hợp." data-en="No matching phrases.">Không tìm thấy câu nào phù hợp.</p>
+            <p class="footnote" data-vi="* Cách đọc phỏng theo giọng Hà Nội, chỉ mang tính gần đúng." data-en="* Pronunciation guides follow the Hanoi accent and are approximate.">* Cách đọc phỏng theo giọng Hà Nội, chỉ mang tính gần đúng.</p>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== CON GIÁP ===================== -->
+      <section class="view" data-view="zodiac" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Thập nhị chi" data-en="The twelve earthly branches">Thập nhị chi</p>
+            <h1 data-vi="Bạn tuổi con gì?" data-en="What's your Vietnamese zodiac?">Bạn tuổi con gì?</h1>
+            <p class="lead" data-vi="Nhập năm sinh để biết con giáp, can chi và bản mệnh của bạn theo lịch âm Việt Nam." data-en="Enter your birth year to find your animal, your Can Chi name and your element in the Vietnamese lunar calendar.">Nhập năm sinh để biết con giáp, can chi và bản mệnh.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container page-body zodiac-layout">
+          <div class="zodiac-side">
+            <form class="zodiac-form card-soft" id="zodiac-form">
+              <label for="zodiac-year" data-vi="Năm sinh của bạn" data-en="Your birth year">Năm sinh của bạn</label>
+              <div class="zodiac-input">
+                <input id="zodiac-year" type="number" inputmode="numeric" min="1900" max="2100" placeholder="1995" required />
+                <button class="btn btn-primary" type="submit"><span data-vi="Xem ngay" data-en="Reveal">Xem ngay</span> <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></button>
+              </div>
+              <p class="hint" data-vi="Năm âm lịch bắt đầu từ Tết (cuối tháng 1 – giữa tháng 2). Nếu sinh trước Tết, bạn thuộc con giáp của năm trước." data-en="The lunar year starts at Tết (late Jan – mid Feb). If you were born before Tết, your animal is that of the previous year.">Năm âm lịch bắt đầu từ Tết.</p>
+            </form>
+            <div class="zodiac-result" id="zodiac-result" aria-live="polite"></div>
+          </div>
+          <div class="zodiac-wheel">
+            <p class="this-year" id="this-year"></p>
+            <div class="zodiac-grid" id="zodiac-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== LỄ HỘI ===================== -->
+      <section class="view" data-view="festivals" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Lịch lễ hội" data-en="Festival calendar">Lịch lễ hội</p>
+            <h1 data-vi="Một năm rộn ràng lễ hội" data-en="A year full of festivals">Một năm rộn ràng lễ hội</h1>
+            <p class="lead" data-vi="Phần lớn lễ hội Việt Nam tính theo lịch âm – hãy xem lễ nào trùng với chuyến đi của bạn." data-en="Most Vietnamese festivals follow the lunar calendar – see which ones match your trip.">Phần lớn lễ hội Việt Nam tính theo lịch âm.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container page-body">
+          <section class="tet-card reveal" id="tet-card">
+            <div class="petals" id="petals" aria-hidden="true"></div>
+            <div class="tet-copy">
+              <p class="kicker" data-vi="Đếm ngược tới Tết" data-en="Countdown to Tết">Đếm ngược tới Tết</p>
+              <h2 id="tet-title"></h2>
+              <p class="tet-date" id="tet-date"></p>
+            </div>
+            <div class="countdown" id="countdown" role="timer">
+              <div><b data-cd="d">0</b><span data-vi="ngày" data-en="days">ngày</span></div>
+              <div><b data-cd="h">0</b><span data-vi="giờ" data-en="hours">giờ</span></div>
+              <div><b data-cd="m">0</b><span data-vi="phút" data-en="mins">phút</span></div>
+              <div><b data-cd="s">0</b><span data-vi="giây" data-en="secs">giây</span></div>
+            </div>
+            <div class="greetings" id="tet-greetings"></div>
+          </section>
+
+          <section class="customs reveal">
+            <div class="sec-head left">
+              <p class="kicker" data-vi="Phong tục ngày Tết" data-en="Tết traditions">Phong tục ngày Tết</p>
+              <h2 class="sec-title" data-vi="Năm điều làm nên cái Tết Việt" data-en="Five things that make a Vietnamese Tết">Năm điều làm nên cái Tết Việt</h2>
+            </div>
+            <div class="customs-grid" id="tet-customs"></div>
+          </section>
+
+          <section>
+            <div class="sec-head left reveal">
+              <p class="kicker" data-vi="Quanh năm" data-en="All year round">Quanh năm</p>
+              <h2 class="sec-title" data-vi="Lễ hội tiêu biểu" data-en="Signature festivals">Lễ hội tiêu biểu</h2>
+            </div>
+            <ol class="timeline" id="festival-list"></ol>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== CẨM NANG ===================== -->
+      <section class="view" data-view="tips" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Cẩm nang du lịch" data-en="Travel handbook">Cẩm nang du lịch</p>
+            <h1 data-vi="Đi Việt Nam cần biết gì?" data-en="Know before you go">Đi Việt Nam cần biết gì?</h1>
+            <p class="lead" data-vi="Phép lịch sự, thời điểm đẹp nhất cho từng miền và những mẹo nhỏ giúp chuyến đi suôn sẻ." data-en="Etiquette, the best season for each region and little tips for a smooth trip.">Phép lịch sự, thời điểm đẹp và mẹo nhỏ.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container page-body">
+          <section>
+            <div class="sec-head left reveal">
+              <p class="kicker" data-vi="Phép lịch sự" data-en="Etiquette">Phép lịch sự</p>
+              <h2 class="sec-title" data-vi="Nên và không nên" data-en="Do's & don'ts">Nên và không nên</h2>
+              <p class="sec-desc" data-vi="Bấm vào thẻ để lật xem giải thích." data-en="Tap a card to flip it.">Bấm vào thẻ để lật xem giải thích.</p>
+            </div>
+            <div class="flip-grid" id="etiquette"></div>
+          </section>
+
+          <section>
+            <div class="sec-head left reveal">
+              <p class="kicker" data-vi="Thời tiết" data-en="Weather">Thời tiết</p>
+              <h2 class="sec-title" data-vi="Thời điểm đẹp nhất cho từng miền" data-en="The best time to visit each region">Thời điểm đẹp nhất cho từng miền</h2>
+            </div>
+            <div class="season-chart reveal" id="seasons"></div>
+            <p class="season-legend">
+              <span><i class="sw sw-1"></i> <span data-vi="Lý tưởng" data-en="Ideal">Lý tưởng</span></span>
+              <span><i class="sw sw-2"></i> <span data-vi="Khá tốt" data-en="Good">Khá tốt</span></span>
+              <span><i class="sw sw-3"></i> <span data-vi="Mưa nhiều / rất nóng" data-en="Rainy / very hot">Mưa nhiều / rất nóng</span></span>
+            </p>
+          </section>
+
+          <section>
+            <div class="sec-head left reveal">
+              <p class="kicker" data-vi="Mẹo thực tế" data-en="Practical tips">Mẹo thực tế</p>
+              <h2 class="sec-title" data-vi="Bỏ túi trước khi lên đường" data-en="Pocket these before you fly">Bỏ túi trước khi lên đường</h2>
+            </div>
+            <div class="tip-grid" id="practical"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===================== ĐỐ VUI ===================== -->
+      <section class="view" data-view="quiz" hidden>
+        <header class="page-hero lacquer">
+          <svg class="ph-drum drum" viewBox="0 0 400 400" aria-hidden="true"><use href="#drum" /></svg>
+          <div class="container">
+            <p class="kicker" data-vi="Khoa thi văn hóa" data-en="The culture exam">Khoa thi văn hóa</p>
+            <h1 data-vi="Bạn hiểu Việt Nam đến đâu?" data-en="How well do you know Vietnam?">Bạn hiểu Việt Nam đến đâu?</h1>
+            <p class="lead" data-vi="Như sĩ tử xưa ở Văn Miếu: trả lời 10 câu hỏi để đỗ Trạng Nguyên và nhận chứng nhận mang tên bạn." data-en="Like the scholars of old at the Temple of Literature: answer 10 questions to become a Trạng Nguyên and earn a certificate in your name.">Trả lời 10 câu hỏi để đỗ Trạng Nguyên.</p>
+          </div>
+          <div class="ds-band" aria-hidden="true"></div>
+        </header>
+        <div class="container page-body">
+          <div class="quiz-box" id="quiz-box" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== CHÂN TRANG ===================== -->
+    <footer class="site-footer lacquer">
+      <div class="ds-band" aria-hidden="true"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="#/home">
+            <svg class="brand-mark" aria-hidden="true"><use href="#lotus" /></svg>
+            <span class="brand-text"><b>Việt Nam</b><small data-vi="Hành trình văn hóa" data-en="A Cultural Journey">Hành trình văn hóa</small></span>
+          </a>
+          <p data-vi="Một chuyến du hành trực tuyến qua di sản, nghệ thuật và ẩm thực Việt – dành tặng những người bạn bốn phương." data-en="An online voyage through Vietnamese heritage, arts and cuisine – made for friends from all over the world.">Một chuyến du hành trực tuyến qua di sản, nghệ thuật và ẩm thực Việt.</p>
+        </div>
+        <nav class="footer-col" aria-label="Khám phá">
+          <h3 data-vi="Khám phá" data-en="Explore">Khám phá</h3>
+          <a href="#/map" data-vi="Bản đồ di sản" data-en="Heritage map">Bản đồ di sản</a>
+          <a href="#/north" data-vi="Miền Bắc – Hà Nội" data-en="North – Hanoi">Miền Bắc – Hà Nội</a>
+          <a href="#/central" data-vi="Miền Trung – Huế" data-en="Central – Hue">Miền Trung – Huế</a>
+          <a href="#/south" data-vi="Miền Nam – Sài Gòn" data-en="South – Saigon">Miền Nam – Sài Gòn</a>
+        </nav>
+        <nav class="footer-col" aria-label="Trải nghiệm">
+          <h3 data-vi="Trải nghiệm" data-en="Experiences">Trải nghiệm</h3>
+          <a href="#/phrases" data-vi="Nói tiếng Việt" data-en="Speak Vietnamese">Nói tiếng Việt</a>
+          <a href="#/zodiac" data-vi="12 con giáp" data-en="Vietnamese zodiac">12 con giáp</a>
+          <a href="#/festivals" data-vi="Lễ hội & Tết" data-en="Festivals & Tết">Lễ hội & Tết</a>
+          <a href="#/tips" data-vi="Cẩm nang du lịch" data-en="Travel tips">Cẩm nang du lịch</a>
+          <a href="#/quiz" data-vi="Đố vui & chứng nhận" data-en="Quiz & certificate">Đố vui & chứng nhận</a>
+        </nav>
+      </div>
+      <p class="footer-note container">
+        <span>© 2026 · <span data-vi="Việt Nam – Vẻ đẹp vượt thời gian" data-en="Vietnam – Timeless Charm">Việt Nam – Vẻ đẹp vượt thời gian</span></span>
+        <span data-vi="Hình ảnh, âm nhạc và video dùng cho mục đích giáo dục." data-en="Images, music and videos are used for educational purposes.">Hình ảnh, âm nhạc và video dùng cho mục đích giáo dục.</span>
+      </p>
+    </footer>
+
+    <!-- ===================== TRÌNH PHÁT NHẠC ===================== -->
+    <div class="player" id="player" hidden>
+      <div class="player-disc" id="player-disc" aria-hidden="true">
+        <svg class="drum" viewBox="0 0 400 400"><use href="#drum-lite" /></svg>
+      </div>
+      <div class="player-info">
+        <span class="player-title" id="track-title"></span>
+        <span class="player-sub" id="track-subtitle"></span>
+      </div>
+      <button type="button" class="player-btn" id="toggle-audio-btn" data-vi-aria="Tạm dừng nhạc" data-en-aria="Pause music">
+        <i class="fa-solid fa-play" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- ===================== SỔ TAY DU LỊCH ===================== -->
+    <div class="scrim" id="scrim" hidden></div>
+    <aside class="drawer" id="journal" aria-labelledby="journal-title" aria-hidden="true">
+      <div class="drawer-head">
+        <h2 id="journal-title"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span data-vi="Sổ tay du lịch" data-en="Travel journal">Sổ tay du lịch</span></h2>
+        <button type="button" class="icon-btn" id="journal-close" data-vi-aria="Đóng" data-en-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <div class="drawer-body">
+        <section>
+          <h3 class="drawer-sub">
+            <span data-vi="Hộ chiếu văn hóa" data-en="Culture passport">Hộ chiếu văn hóa</span>
+            <span class="pill" id="stamp-progress">0/4</span>
+          </h3>
+          <p class="drawer-hint" data-vi="Ghé thăm mỗi miền và hoàn thành bài đố vui để nhận đủ 4 con dấu." data-en="Visit each region and finish the quiz to collect all 4 stamps.">Ghé thăm mỗi miền và hoàn thành bài đố vui để nhận đủ 4 con dấu.</p>
+          <div class="stamps stamps-sm" data-stamps></div>
+        </section>
+        <section>
+          <h3 class="drawer-sub">
+            <span data-vi="Địa điểm & món ăn đã lưu" data-en="Saved places & dishes">Địa điểm & món ăn đã lưu</span>
+          </h3>
+          <ul class="saved-list" id="saved-list"></ul>
+          <p class="drawer-hint" id="saved-empty" data-vi="Bấm ♡ trên các thẻ để lưu những nơi và món ăn bạn muốn thử." data-en="Tap ♡ on any card to save the places and dishes you want to try.">Bấm ♡ trên các thẻ để lưu những nơi và món ăn bạn muốn thử.</p>
+        </section>
+      </div>
+      <div class="drawer-foot">
+        <button type="button" class="btn btn-outline btn-sm" id="saved-print"><i class="fa-solid fa-print" aria-hidden="true"></i> <span data-vi="In danh sách" data-en="Print list">In danh sách</span></button>
+        <button type="button" class="btn btn-text btn-sm" id="saved-clear"><i class="fa-solid fa-trash-can" aria-hidden="true"></i> <span data-vi="Xóa tất cả" data-en="Clear all">Xóa tất cả</span></button>
+      </div>
+    </aside>
+
+    <!-- ===================== XEM ẢNH LỚN ===================== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title" hidden>
+      <button type="button" class="lb-btn lb-close" id="lb-close" data-vi-aria="Đóng" data-en-aria="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <button type="button" class="lb-btn lb-prev" id="lb-prev" data-vi-aria="Ảnh trước" data-en-aria="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+      <figure class="lb-figure">
+        <img id="lb-img" alt="" />
+        <figcaption>
+          <h3 id="lb-title"></h3>
+          <p id="lb-desc"></p>
+          <span class="lb-count" id="lb-count"></span>
+        </figcaption>
+      </figure>
+      <button type="button" class="lb-btn lb-next" id="lb-next" data-vi-aria="Ảnh sau" data-en-aria="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Nhạc nền từng miền -->
+    <audio id="audio-north" loop preload="none" src="media/north.mp3"></audio>
+    <audio id="audio-central" loop preload="none" src="media/central.mp3"></audio>
+    <audio id="audio-south" loop preload="none" src="media/south.mp3"></audio>
+
+    <script src="map-data.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

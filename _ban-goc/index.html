@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive journey through the culture, landmarks and cuisine of Northern, Central and Southern Vietnam."
+    />
+    <meta name="theme-color" content="#8b0000" />
+    <title>Discover Vietnamese Culture</title>
+    <!-- Google Fonts: Inter / Roboto / Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Be+Vietnam+Pro:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Top Music Controller Fixed Bar -->
+    <div id="audio-controller" class="audio-bar hidden">
+      <div class="audio-info">
+        <div class="disc-icon" id="disc-icon">
+          <i class="fa-solid fa-compact-disc"></i>
+        </div>
+        <div>
+          <div id="track-title" class="track-title">Traditional Music</div>
+          <div id="track-subtitle" class="track-subtitle">Audio Player</div>
+        </div>
+      </div>
+      <button id="toggle-audio-btn" class="audio-btn">
+        <i class="fa-solid fa-pause"></i>
+        <span id="audio-status-text">Pause Music</span>
+      </button>
+    </div>
+
+    <!-- 1. LANDING WELCOME SCREEN -->
+    <section id="welcome-screen" class="screen active welcome-bg">
+      <div class="lanterns" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="welcome-card">
+        <div class="welcome-icon">
+          <i class="fa-solid fa-spa"></i>
+        </div>
+        <h1 class="welcome-title">Welcome to Vietnam</h1>
+        <p class="welcome-subtitle">
+          Embark on an inspiring journey to discover the traditional cultural
+          heritage of Vietnam
+        </p>
+        <p class="welcome-desc">
+          Explore centuries-old architecture, UNESCO intangible heritages, and
+          exquisite culinary traditions across the North, Central, and South
+          regions.
+        </p>
+
+        <div class="region-chips">
+          <span><i class="fa-solid fa-landmark"></i> Hanoi</span>
+          <span><i class="fa-solid fa-crown"></i> Hue</span>
+          <span><i class="fa-solid fa-city"></i> Ho Chi Minh City</span>
+        </div>
+
+        <button id="btn-explore" class="btn-primary">
+          <span>Start Exploring</span>
+          <i class="fa-solid fa-compass"></i>
+        </button>
+        <p class="sound-hint">
+          <i class="fa-solid fa-volume-high"></i> Turn your sound on to hear
+          traditional music from each region
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. INTERACTIVE MAP SCREEN -->
+    <section id="map-screen" class="screen map-bg hidden">
+      <div class="map-header">
+        <h2>VIETNAM CULTURAL HERITAGE MAP</h2>
+        <p class="map-instruction">
+          <i class="fa-solid fa-hand-pointer"></i> Click on the interactive map
+          pins to choose a region to explore
+        </p>
+      </div>
+
+      <div class="map-wrapper">
+        <!-- Nền bản đồ thực tế từ hình ảnh -->
+        <img
+          src="./Flag_map_of_Vietnam.svg"
+          alt="Vietnam Map"
+          class="vietnam-map-img"
+        />
+
+        <!-- PIN MIỀN BẮC (HÀ NỘI) -->
+        <div class="map-pin pin-hanoi" data-target="region-north">
+          <div class="pin-pulse"></div>
+          <div class="pin-marker"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="pin-label">
+            <span class="region-tag">North Vietnam</span>
+            <strong>Hanoi Capital</strong>
+          </div>
+        </div>
+
+        <!-- PIN MIỀN TRUNG (HUẾ) -->
+        <div class="map-pin pin-hue" data-target="region-central">
+          <div class="pin-pulse"></div>
+          <div class="pin-marker"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="pin-label">
+            <span class="region-tag">Central Vietnam</span>
+            <strong>Hue Imperial City</strong>
+          </div>
+        </div>
+
+        <!-- PIN MIỀN NAM (TP. HỒ CHÍ MINH) -->
+        <div class="map-pin pin-hcm" data-target="region-south">
+          <div class="pin-pulse"></div>
+          <div class="pin-marker"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="pin-label">
+            <span class="region-tag">South Vietnam</span>
+            <strong>Ho Chi Minh City</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. NORTH VIETNAM (HANOI) -->
+    <section id="region-north" class="screen content-screen hidden">
+      <div class="container">
+        <nav class="region-tabs" aria-label="Regions">
+          <button class="btn-back-map">
+            <i class="fa-solid fa-map"></i> Map
+          </button>
+          <button
+            class="btn-next-region is-active"
+            data-next="region-north"
+            aria-current="page"
+          >
+            <i class="fa-solid fa-landmark"></i> North
+          </button>
+          <button class="btn-next-region" data-next="region-central">
+            <i class="fa-solid fa-crown"></i> Central
+          </button>
+          <button class="btn-next-region" data-next="region-south">
+            <i class="fa-solid fa-city"></i> South
+          </button>
+        </nav>
+        <div class="region-header">
+          <span class="badge">Northern Culture</span>
+          <h1>HANOI - THANG LONG HERITAGE</h1>
+          <p>
+            The thousands-year-old capital reflecting Vietnam's ancient
+            traditions and folk arts
+          </p>
+        </div>
+
+        <!-- Famous Landmarks -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-camera"></i> Famous Landmarks & Historic Sites
+          </h3>
+          <div class="grid-4">
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Hồ_Hoàn_Kiếm.jpg"
+                  alt="Hoan Kiem Lake"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hoan Kiem Lake & Turtle Tower</h4>
+                <p class="en-desc">
+                  The historic heart of Hanoi, famous for its serene waters,
+                  ancient Turtle Tower, and legendary myth of the Returned
+                  Sword.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Temple of Literature.webp"
+                  alt="Temple of Literature"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Temple of Literature</h4>
+                <p class="en-desc">
+                  Vietnam's first national university constructed in 1070,
+                  dedicated to Confucius and honoring ancient scholars.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Old Quater Hannoi.webp"
+                  alt="Hanoi Old Quarter"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hanoi Old Quarter</h4>
+                <p class="en-desc">
+                  A lively network of 36 historic commercial streets preserving
+                  centuries of artisanal craftsmanship and local life.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./One Pillar Pagoda.jpg"
+                  alt="One Pillar Pagoda"
+                />
+              </div>
+              <div class="card-body">
+                <h4>One Pillar Pagoda</h4>
+                <p class="en-desc">
+                  An architectural marvel built in 1049, designed to resemble a
+                  delicate lotus blossom emerging from the water.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Puppetry Video -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-film"></i> Traditional Water Puppetry Art
+          </h3>
+          <div class="video-container">
+            <video
+              class="culture-video"
+              controls
+              playsinline
+              preload="metadata"
+              title="Water Puppetry Hanoi"
+            >
+              <source src="./media/water-puppet.mp4" type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ video.
+            </video>
+          </div>
+          <p class="video-caption">
+            Water Puppetry (Múa Rối Nước) - A unique intangible folk art
+            originated in the Red River Delta during the 11th century.
+          </p>
+        </div>
+
+        <!-- Northern Cuisine (Separated Image + Text Below Layout) -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-utensils"></i> Iconic Northern Cuisine
+          </h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./BeefNoodleSoup.webp"
+                  alt="Hanoi Pho"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hanoi Pho (Beef Noodle Soup)</h4>
+                <p class="en-desc">
+                  World-renowned traditional soup featuring flat rice noodles,
+                  fragrant herb-infused clear beef broth, and tender sliced
+                  beef.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./bun-cha-ha-noi.jpg"
+                  alt="Bun Cha Hanoi"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Bun Cha Hanoi</h4>
+                <p class="en-desc">
+                  Charcoal-grilled pork patties and pork belly served in sweet
+                  dipping sauce, accompanied by rice vermicelli and fresh herbs.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./cafe egg.jpg"
+                  alt="Hanoi Egg Coffee"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hanoi Egg Coffee (Cà Phê Trứng)</h4>
+                <p class="en-desc">
+                  A rich specialty prepared with dark Vietnamese coffee topped
+                  with whipped egg yolks and sweetened condensed milk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="nav-footer">
+          <button class="btn-secondary btn-back-map">
+            <i class="fa-solid fa-map"></i> Cultural Map
+          </button>
+          <button
+            class="btn-primary btn-next-region"
+            data-next="region-central"
+          >
+            Explore Central Vietnam (Hue)
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CENTRAL VIETNAM (HUE) -->
+    <section id="region-central" class="screen content-screen hidden">
+      <div class="container">
+        <nav class="region-tabs" aria-label="Regions">
+          <button class="btn-back-map">
+            <i class="fa-solid fa-map"></i> Map
+          </button>
+          <button class="btn-next-region" data-next="region-north">
+            <i class="fa-solid fa-landmark"></i> North
+          </button>
+          <button
+            class="btn-next-region is-active"
+            data-next="region-central"
+            aria-current="page"
+          >
+            <i class="fa-solid fa-crown"></i> Central
+          </button>
+          <button class="btn-next-region" data-next="region-south">
+            <i class="fa-solid fa-city"></i> South
+          </button>
+        </nav>
+        <div class="region-header">
+          <span class="badge">Central Culture</span>
+          <h1>HUE IMPERIAL CITY - ROYAL ELEGANCE</h1>
+          <p>
+            The ancient imperial capital preserving royal monuments and UNESCO
+            world heritages
+          </p>
+        </div>
+
+        <!-- Imperial Monuments -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-camera"></i> Imperial Monuments of Hue
+          </h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./hue-imperial-city.webp"
+                  alt="Imperial Citadel"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Imperial Citadel of Hue</h4>
+                <p class="en-desc">
+                  A UNESCO World Heritage site, serving as the seat of the
+                  Nguyen Dynasty emperors for over 140 years (1802-1945).
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./thien-mu-pagoda.jpg"
+                  alt="Thien Mu Pagoda"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Thien Mu Pagoda</h4>
+                <p class="en-desc">
+                  An iconic 7-story octagonal tower built in 1601, standing
+                  peacefully along the scenic Perfume River.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Khaidinh Tomb.jpg"
+                  alt="Khai Dinh Tomb"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Tomb of Emperor Khai Dinh</h4>
+                <p class="en-desc">
+                  An architectural masterpiece combining traditional Vietnamese
+                  mosaic art with European Gothic influences.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Royal Court Music Video -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-music"></i> Hue Royal Court Music (Nha Nhac)
+          </h3>
+          <div class="video-container">
+            <video
+              class="culture-video"
+              controls
+              playsinline
+              preload="metadata"
+              title="Hue Royal Court Music"
+            >
+              <source src="./media/nha-nhac.mp4" type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ video.
+            </video>
+          </div>
+          <p class="video-caption">
+            Nha Nhac Cung Dinh Hue - Recognized by UNESCO as an Intangible
+            Cultural Heritage of Humanity.
+          </p>
+        </div>
+
+        <!-- Central Cuisine (Separated Image + Text Below Layout) -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-utensils"></i> Royal & Authentic Central
+            Dishes
+          </h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-img-holder">
+                <img loading="lazy" src="./Bunbohue.webp" alt="Bun Bo Hue" />
+              </div>
+              <div class="card-body">
+                <h4>Bun Bo Hue (Spicy Beef Noodles)</h4>
+                <p class="en-desc">
+                  A rich, aromatic noodle soup featuring lemongrass broth,
+                  tender beef shank, crab balls, and spicy chili oil.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Banhbeo.webp"
+                  alt="Hue Steamed Rice Cakes"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hue Steamed Rice Cakes (Banh Beo)</h4>
+                <p class="en-desc">
+                  Delicate small rice flour cakes topped with dried shrimp,
+                  crispy pork skin, scallions, and savory fish sauce.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img loading="lazy" src="./Cơm hến.webp" alt="Com Hen" />
+              </div>
+              <div class="card-body">
+                <h4>Clam Rice (Cơm Hến)</h4>
+                <p class="en-desc">
+                  A vibrant harmony of rice, baby river clams, crispy pork
+                  cracklings, roasted peanuts, and fragrant herbs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="nav-footer">
+          <button
+            class="btn-secondary btn-prev-region"
+            data-prev="region-north"
+          >
+            <i class="fa-solid fa-arrow-left"></i> Northern Region (Hanoi)
+          </button>
+          <button class="btn-secondary btn-back-map">
+            <i class="fa-solid fa-map"></i> Cultural Map
+          </button>
+          <button class="btn-primary btn-next-region" data-next="region-south">
+            Explore Southern Region (Saigon)
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SOUTH VIETNAM (HO CHI MINH CITY) -->
+    <section id="region-south" class="screen content-screen hidden">
+      <div class="container">
+        <nav class="region-tabs" aria-label="Regions">
+          <button class="btn-back-map">
+            <i class="fa-solid fa-map"></i> Map
+          </button>
+          <button class="btn-next-region" data-next="region-north">
+            <i class="fa-solid fa-landmark"></i> North
+          </button>
+          <button class="btn-next-region" data-next="region-central">
+            <i class="fa-solid fa-crown"></i> Central
+          </button>
+          <button
+            class="btn-next-region is-active"
+            data-next="region-south"
+            aria-current="page"
+          >
+            <i class="fa-solid fa-city"></i> South
+          </button>
+        </nav>
+        <div class="region-header">
+          <span class="badge">Southern Culture</span>
+          <h1>HO CHI MINH CITY - SAIGON DYNAMISM</h1>
+          <p>
+            A vibrant metropolis blending modern energy, colonial charm, and
+            hospitable traditions
+          </p>
+        </div>
+
+        <!-- Southern Highlights -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-city"></i> Saigon Iconic Landmarks
+          </h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./Đức bà.jpeg"
+                  alt="Saigon Notre-Dame Basilica"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Saigon Notre-Dame Basilica</h4>
+                <p class="en-desc">
+                  An iconic French colonial cathedral constructed in the 19th
+                  century with red bricks imported directly from Marseille.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./cho_ben_thanh.jpg"
+                  alt="Ben Thanh Market"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Ben Thanh Market</h4>
+                <p class="en-desc">
+                  The historic bustling heart of Saigon commerce, offering
+                  traditional handicrafts, textiles, and local street
+                  delicacies.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./toan-canh-dinh-doc-lap.webp"
+                  alt="Independence Palace"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Independence Palace</h4>
+                <p class="en-desc">
+                  A historic national landmark preserving 1970s architecture,
+                  deeply associated with the modern history of Vietnam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Don Ca Tai Tu Video -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-guitar"></i> Don Ca Tai Tu Music Heritage
+          </h3>
+          <div class="video-container">
+            <video
+              class="culture-video"
+              controls
+              playsinline
+              preload="metadata"
+              title="Don Ca Tai Tu Southern Vietnam"
+            >
+              <source src="./media/don-ca-tai-tu.mp4" type="video/mp4" />
+              Trình duyệt của bạn không hỗ trợ video.
+            </video>
+          </div>
+          <p class="video-caption">
+            Don Ca Tai Tu - Soulful southern folk musical art reflecting the
+            warm hospitality of the Mekong Delta.
+          </p>
+        </div>
+
+        <!-- Southern Cuisine (Separated Image + Text Below Layout) -->
+        <div class="section-block">
+          <h3 class="section-title">
+            <i class="fa-solid fa-burger"></i> Flavorful Southern Street Food
+          </h3>
+          <div class="grid-3">
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./banh-mi-sai-gon.jpg"
+                  alt="Saigon Banh Mi"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Saigon Banh Mi</h4>
+                <p class="en-desc">
+                  Crispy French baguette stuffed with savory pate, cold cuts,
+                  fresh cilantro, cucumber, pickled daikon, and chili.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img loading="lazy" src="./cơm tấm.jpg" alt="Com Tam Saigon" />
+              </div>
+              <div class="card-body">
+                <h4>Saigon Broken Rice (Cơm Tấm)</h4>
+                <p class="en-desc">
+                  Popular dish served with marinated grilled pork chop, steamed
+                  egg loaf, pork skin, and sweet garlic fish sauce.
+                </p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-img-holder">
+                <img
+                  loading="lazy"
+                  src="./hủ tiếu.jpg"
+                  alt="Hu Tieu Nam Vang"
+                />
+              </div>
+              <div class="card-body">
+                <h4>Hu Tieu Noodle Soup</h4>
+                <p class="en-desc">
+                  A flavorful noodle dish featuring rich pork bone broth, fresh
+                  shrimp, quail eggs, minced pork, and fresh herbs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="nav-footer">
+          <button
+            class="btn-secondary btn-prev-region"
+            data-prev="region-central"
+          >
+            <i class="fa-solid fa-arrow-left"></i> Central Region (Hue)
+          </button>
+          <button class="btn-secondary btn-back-map">
+            <i class="fa-solid fa-map"></i> Cultural Map
+          </button>
+          <button class="btn-primary btn-next-region" data-next="thanks-screen">
+            Finish the Journey <i class="fa-solid fa-flag-checkered"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FINAL THANK-YOU SCREEN -->
+    <section id="thanks-screen" class="screen thanks-bg hidden">
+      <div class="lanterns" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="thanks-card">
+        <i class="fa-solid fa-heart footer-heart"></i>
+        <h2 class="thanks-title">Thank You for Visiting Vietnam!</h2>
+        <p class="en-wish">
+          "May your journey through Vietnam be filled with unforgettable
+          memories, warm smiles, and extraordinary cultural discoveries. We wish
+          you peace, joy, and safe travels wherever your path leads!"
+        </p>
+        <div class="thanks-actions">
+          <button class="btn-primary btn-back-map">
+            <i class="fa-solid fa-map"></i> Back to Cultural Map
+          </button>
+          <button class="btn-secondary" id="btn-restart">
+            <i class="fa-solid fa-rotate-left"></i> Start Over
+          </button>
+        </div>
+        <div class="thanks-regions">
+          <span>Revisit a region:</span>
+          <button class="btn-next-region" data-next="region-north">
+            North
+          </button>
+          <button class="btn-next-region" data-next="region-central">
+            Central
+          </button>
+          <button class="btn-next-region" data-next="region-south">
+            South
+          </button>
+        </div>
+        <div class="vntravel-tag">
+          <i class="fa-solid fa-star"></i> Vietnam - Timeless Charm
+          <i class="fa-solid fa-star"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background Audio Elements -->
+    <audio id="audio-north" loop preload="auto">
+      <source
+        src="./media/north.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <audio id="audio-central" loop preload="auto">
+      <source
+        src="./media/central.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+    <audio id="audio-south" loop preload="auto">
+      <source
+        src="./media/south.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
